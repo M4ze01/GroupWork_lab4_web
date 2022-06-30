@@ -12,5 +12,7 @@
             "email": "manivournthon@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "envms/fluentpdo": "^2.2"
+    }
 }
