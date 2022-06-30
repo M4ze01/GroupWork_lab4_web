@@ -1,0 +1,16 @@
+{
+    "name": "legion/lab4",
+    "description": "GroupWork",
+    "autoload": {
+        "psr-4": {
+            "Legion\\Lab4\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "manivourne",
+            "email": "manivournthon@gmail.com"
+        }
+    ],
+    "require": {}
+}
