@@ -10,26 +10,9 @@ if (isset($_POST['login'])) {
     $query = $fluent->from('users')->where('email', $email)->where('password', $password)->fetch();
     if ($query === false) {
         echo "<script>alert('username or password is invalid')</script>";
+        header('Location: interface/login.php');
     } else {
         echo "<script>alert('Login completed');</script>";
+        header('Location: interface/delete_form.php');
     }
 }
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <?php
-    var_dump($query);
-    ?>
-</body>
-
-</html>
