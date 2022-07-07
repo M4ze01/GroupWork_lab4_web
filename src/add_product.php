@@ -16,8 +16,7 @@ if (isset($_POST)) {
         'price' => $price,
     ];
 
-    $query = $fluent
-        ->insertInto('products')
+    $query = $fluent->insertInto('products')
         ->values($values)
         ->execute();
     echo "product added successfully";
