@@ -45,12 +45,12 @@ $Data = $query->fetchAll();
 
                    $price = $RowData['price'];
                    echo '<tr>';
-                   echo '<th scope=' . 'row' . ">$key</th>" . '<br>';
+                   echo '<th scope=' . 'row' . ">$key</th>";
                    echo "<td>$name</td>";
                    echo "<td>$amountPro</td>";
-                   echo "<td>$price</td>" . '<br>';
+                   echo "<td>$price</td>";
                    echo '<td>
-                    
+
                     <button class="btn btn-warning mx-1" type = "button" value="' .
                        $key .
                        '" name = "Edit_btn" > Edit </button><button class="btn btn-danger" type = "button"value="' .
@@ -58,7 +58,8 @@ $Data = $query->fetchAll();
                        '" name = "Delete_btn" > Delete </button>
 
                        </td>';
-                   echo "<\tr>";
+
+                   echo '</tr>';
                } ?>
           </tbody> 
      </table>
