@@ -7,7 +7,7 @@ $fluent = new Envms\FluentPDO\Query($pdo);
 
 $values = [
     'id' => '',
-    'name' => 'content1',
+    'name' => 'RandomData',
     'user_id' => 1,
     'amount' => 10,
     'price' => 20,
@@ -19,7 +19,7 @@ $query = $fluent
     ->execute();
 
 // $query = $fluent->insertInto('products', $values)->execute();
-// 
+//
 ?>
 
 <!DOCTYPE html>
