@@ -120,36 +120,22 @@
             <img src="background.jpg" alt="">
         </div>
         <div class="text-center mt-4 name">
-            Register Form
+            Login
         </div>
-        <form action="../backend_register.php" method="post" class="p-3 mt-3">
-            <div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <input type="text" name="firstname" placeholder="First Name">
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input type="text" name="lastname" placeholder="Last Name">
-            </div>
+        <form action="../backend_login.php" method="post" class="p-3 mt-3">
+
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
                 <input type="text" name="email" placeholder="Email">
             </div>
+
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="text" name="userid" placeholder="User Id">
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input type="text" name="password" placeholder="Password">
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input type="text" name="cpassword" placeholder="Confirm Password">
+                <input type="password" name="password" placeholder="Password">
             </div>
 
-            <button class="btn mt-3" name="signup">sign up</button>
-            Already has an account?<a href="#"> Log in</a>
+
+            <button class="btn mt-3" name="login">login</button>
         </form>
 
     </div>

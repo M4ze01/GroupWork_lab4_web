@@ -141,15 +141,15 @@
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="text" name="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="text" name="cpassword" placeholder="Confirm Password">
+                <input type="password" name="cpassword" placeholder="Confirm Password">
             </div>
 
             <button class="btn mt-3" name="signup">sign up</button>
-            Already has an account?<a href="#"> Log in</a>
+            Already has an account?<a href="../backend_login.php"> Log in</a>
         </form>
 
     </div>
