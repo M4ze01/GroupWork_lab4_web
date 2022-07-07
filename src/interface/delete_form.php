@@ -20,7 +20,6 @@ $Data = $query->fetchAll();
 </head>
 <body>
 
-     <?php var_dump($Data); ?>
      <table class="table table-striped m-5 pb-5 ">
           <thead>
                <tr>
@@ -35,7 +34,6 @@ $Data = $query->fetchAll();
           <tbody>
                <?php foreach ($Data as $key => $RowData) {
                    $row = 'row';
-                   var_dump($RowData);
                    $name = $RowData['name'];
                    $amountPro = $RowData['amount'];
 
@@ -45,11 +43,11 @@ $Data = $query->fetchAll();
                    echo "<td>$name</td>";
                    echo "<td>$amountPro</td>";
                    echo "<td>$price</td>";
-                   echo '<td></td>';
-                   echo '<td></td>';
+                   echo '<td><button class="btn btn-warning mx-1" type = "button" > Edit </button></td>';
+                   echo '<td><button class="btn btn-danger" type = "button" > Delete </button></td>';
                    echo "<\tr>";
                } ?>
-          </tbody>
+          </tbody> 
      </table>
 </body>
 </html>
