@@ -1,5 +1,13 @@
 <?php
 require '..\..\vendor\autoload.php';
+require '..\delete.php';
+
+if (isset($_POST['Delete_btn'])) {
+    deleteProduct((int) $_POST['Delete_btn']);
+}
+if (isset($_POST['Edit_btn'])) {
+    echo 'This is Button2 that is selected';
+}
 
 $pdo = new PDO('mysql:dbname=learningphp', 'root', '');
 $fluent = new Envms\FluentPDO\Query($pdo);
@@ -27,24 +35,29 @@ $Data = $query->fetchAll();
                     <th scope="col">Name</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Buttons</th>
                </tr>
           </thead>
           <tbody>
                <?php foreach ($Data as $key => $RowData) {
-                   $row = 'row';
                    $name = $RowData['name'];
                    $amountPro = $RowData['amount'];
 
                    $price = $RowData['price'];
                    echo '<tr>';
-                   echo '<th scope=' . $row . ">$key</th>" . '<br>';
+                   echo '<th scope=' . 'row' . ">$key</th>" . '<br>';
                    echo "<td>$name</td>";
                    echo "<td>$amountPro</td>";
-                   echo "<td>$price</td>";
-                   echo '<td><button class="btn btn-warning mx-1" type = "button" > Edit </button></td>';
-                   echo '<td><button class="btn btn-danger" type = "button" > Delete </button></td>';
+                   echo "<td>$price</td>" . '<br>';
+                   echo '<td>
+                    
+                    <button class="btn btn-warning mx-1" type = "button" value="' .
+                       $key .
+                       '" name = "Edit_btn" > Edit </button><button class="btn btn-danger" type = "button"value="' .
+                       $key .
+                       '" name = "Delete_btn" > Delete </button>
+
+                       </td>';
                    echo "<\tr>";
                } ?>
           </tbody> 
