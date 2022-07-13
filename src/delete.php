@@ -1,15 +1,15 @@
 <?php
 
-require '..\..\vendor\autoload.php';
+require '..\vendor\autoload.php';
 
-    if (isset($_POST['id'])) {
+    if (isset($_GET['id'])) {
         $pdo = new PDO('mysql:dbname=learningphp', 'root', '');
         $fluent = new Envms\FluentPDO\Query($pdo);
         $query = $fluent
                     ->deleteFrom('products')
-                    ->where('id', $ID)
+                    ->where('id', (int)$_GET['id'])
                     ->execute();
-        header('Location:inteface');
+        header('Location:interface');
     }
     
 ?>

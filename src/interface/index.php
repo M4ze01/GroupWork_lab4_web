@@ -26,7 +26,12 @@ $Data = $query->fetchAll();
 </head>
 <body>
 
-     <table class="table table-striped" id = "table">
+     <div class="">
+          <a class="btn btn-primary float-end p-2 m-4" href="login.php?cup=1" role="button">log out</a>
+          <a class="btn btn-primary float-end p-2 m-4" href="form_for_addproduct.php" role="button">Add Product</a>
+     </div>
+
+     <table class="table table-striped m-2" id = "table">
           <thead>
                <tr>
                     <th scope="col">#</th>
@@ -49,9 +54,9 @@ $Data = $query->fetchAll();
                    echo "<td>$price</td>";
                    echo '<td>
                     <button class="btn btn-warning mx-1" type = "button" 
-                    onclick="deleteRow('.$key.')" name = "Edit_btn" > Edit </button>
+                    onclick="Edit('.$key.')" name = "Edit_btn" > Edit </button>
                     <button class="btn btn-danger" type = "button" 
-                    onclick="deleteRow('.$key.')" name = "Delete_btn" > Delete </button></td>';
+                    onclick="DeleteConfirm()" name = "Delete_btn" id ='.$key.' href="../delete.php?id='.$key.'"> Delete </button></td>';
                    echo '</tr>';
                } ?>
           </tbody> 
@@ -65,19 +70,30 @@ $Data = $query->fetchAll();
           $(document).ready(function () {
           $('#table').DataTable();
           });
+
+          function Edit(key) {
+                    bool = confirm("Are you sure to edit the record");
+                    if (!bool) {
+
+                    }
+                  }
+
+          function DeleteConfirm() {
+                    confirm("Are you sure to delete the record");
+                  }
+
           function deleteRow(productID){
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {                     
-
-          if (xhttp.readyState == 4 && xhttp.status == 200) {
-                  alert("Deleted!");
-               }
+               if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    alert("Deleted!");
+                    }
           };
-          document.getElementById("table").deleteRow(x);
-          xhttp.open("POST", "../delete.php", true);
+          document.getElementById("#table").deleteRow(x);
+          xhttp.open("GET", "../delete.php", true);
           xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xhttp.send("id="+productID);
-        }       
+        }    
      </script>
 
 </body>

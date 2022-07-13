@@ -20,7 +20,7 @@ if (isset($_POST)) {
         ->values($values)
         ->execute();
     echo "product added successfully";
-    header('Location: delete_form.php');
+    header('Location:interface');
 }
 
 // $query = $fluent->insertInto('products', $values)->execute();
