@@ -5,8 +5,8 @@ if (!isset($_SESSION['userID'])) {
      header("Location:login.php");
 }
 
-
 require '..\..\vendor\autoload.php';
+
 $pdo = new PDO('mysql:dbname=learningphp', 'root', '');
 $fluent = new Envms\FluentPDO\Query($pdo);
 $query = $fluent->from('products');
@@ -45,7 +45,7 @@ $Data = $query->fetchAll();
                <?php foreach ($Data as $key => $RowData) {
                    $name = $RowData['name'];
                    $amountPro = $RowData['amount'];
-
+                   $sqlID = $RowData['id'];
                    $price = $RowData['price'];
                    echo '<tr>';
                    echo '<th scope=' . 'row' . ">$key</th>";
@@ -54,9 +54,9 @@ $Data = $query->fetchAll();
                    echo "<td>$price</td>";
                    echo '<td>
                     <button class="btn btn-warning mx-1" type = "button" 
-                    onclick="Edit('.$key.')" name = "Edit_btn" > Edit </button>
+                    onclick="Edit('.$sqlID.')" name = "Edit_btn" > Edit </button>
                     <button class="btn btn-danger" type = "button" 
-                    onclick="DeleteConfirm()" name = "Delete_btn" id ='.$key.' href="../delete.php?id='.$key.'"> Delete </button></td>';
+                    onclick="DeleteConfirm('.$sqlID.')" name = "Delete_btn" id ='.$sqlID.' > Delete </button></td>';
                    echo '</tr>';
                } ?>
           </tbody> 
@@ -73,26 +73,29 @@ $Data = $query->fetchAll();
 
           function Edit(key) {
                     bool = confirm("Are you sure to edit the record");
-                    if (!bool) {
-
+                    if (bool) {
+                         window.location.href = "form_for_edit.php?product_id="+key;
                     }
                   }
 
-          function DeleteConfirm() {
-                    confirm("Are you sure to delete the record");
+          function DeleteConfirm(productID) {
+                    com = confirm("Are you sure to delete the record");
+                    if (com) {
+                         deleteRow(productID);
+                    }
                   }
 
           function deleteRow(productID){
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {                     
-               if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    alert("Deleted!");
+               var xhttp = new XMLHttpRequest();
+               xhttp.open("POST", "../delete.php", true);
+               xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+               xhttp.onreadystatechange = function() {                     
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                         alert("Deleted!");
+                         window.location.reload();
                     }
-          };
-          document.getElementById("#table").deleteRow(x);
-          xhttp.open("GET", "../delete.php", true);
-          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xhttp.send("id="+productID);
+               }; 
+               xhttp.send("id="+productID);
         }    
      </script>
 

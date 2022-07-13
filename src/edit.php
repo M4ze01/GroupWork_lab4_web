@@ -18,3 +18,5 @@ $set = array(
 );
 
 $query = $fluent->update('products')->set($set)->where('id', $product_id)->execute();
+
+header("Location:interface");
