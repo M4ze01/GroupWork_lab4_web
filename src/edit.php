@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require '..\vendor\autoload.php';
 $amount = $_POST['amount'];
@@ -11,6 +12,7 @@ $pdo = new PDO('mysql:dbname=learningphp', 'root', '');
 $fluent = new Envms\FluentPDO\Query($pdo);
 $set = array(
     'name' => $product_name,
+    'user_id' => (int)$_SESSION['userID'],
     'amount' => $amount,
     'price' => $price,
 );

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '..\vendor\autoload.php';
 
 $pdo = new PDO('mysql:dbname=learningphp', 'root', '');
@@ -12,7 +12,8 @@ if (isset($_POST['login'])) {
         echo "<script>alert('username or password is invalid')</script>";
         header('Location: interface/login.php');
     } else {
+        $_SESSION['userID'] = $query['id'];
         echo "<script>alert('Login completed');</script>";
-        header('Location: interface/delete_form.php');
+        header('Location:interface');
     }
 }

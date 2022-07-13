@@ -1,7 +1,12 @@
 <?php
-require '..\..\vendor\autoload.php';
-require '..\delete.php';
+session_start();
 
+if (!isset($_SESSION['userID'])) {
+     header("Location:login.php");
+}
+
+
+require '..\..\vendor\autoload.php';
 $pdo = new PDO('mysql:dbname=learningphp', 'root', '');
 $fluent = new Envms\FluentPDO\Query($pdo);
 $query = $fluent->from('products');
@@ -21,7 +26,7 @@ $Data = $query->fetchAll();
 </head>
 <body>
 
-     <table class="table table-striped m-5 pb-5 ">
+     <table class="table table-striped" id = "table">
           <thead>
                <tr>
                     <th scope="col">#</th>
@@ -43,36 +48,37 @@ $Data = $query->fetchAll();
                    echo "<td>$amountPro</td>";
                    echo "<td>$price</td>";
                    echo '<td>
-
-                    <button class="btn btn-warning mx-1" type = "button" onclick="deleteRow(' .
-                       $key .
-                       ')" name = "Edit_btn" > Edit </button><button class="btn btn-danger" type = "button" 
-                       onclick="deleteRow(' .
-                       $key .
-                       ')" name = "Delete_btn" > Delete </button>
-
-                       </td>';
-
+                    <button class="btn btn-warning mx-1" type = "button" 
+                    onclick="deleteRow('.$key.')" name = "Edit_btn" > Edit </button>
+                    <button class="btn btn-danger" type = "button" 
+                    onclick="deleteRow('.$key.')" name = "Delete_btn" > Delete </button></td>';
                    echo '</tr>';
                } ?>
           </tbody> 
      </table>
+          
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.20/sweetalert2.all.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
      <script>
-     function deleteRow(ProductID){
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {                     
+          $(document).ready(function () {
+          $('#table').DataTable();
+          });
+          function deleteRow(productID){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {                     
 
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
                   alert("Deleted!");
-            }
-        };
-        document.getElementById("table").deleteRow(x);
-        xhttp.open("POST", "delete.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("id="+ProductID);
+               }
+          };
+          document.getElementById("table").deleteRow(x);
+          xhttp.open("POST", "../delete.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("id="+productID);
         }       
-</script>
+     </script>
 
 </body>
 </html>

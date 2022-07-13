@@ -24,7 +24,9 @@ if (isset($_POST['signup'])) {
             ->values($values)
             ->execute();
         echo "<script>alert('Register successfully');</script>";
+        header('Location:interface');
     } else {
         echo "<script>alert('Password does not match my man');</script>";
+        header('Location:interface/register.php');
     }
 }
